@@ -31,7 +31,7 @@ Name of the check. Default: current job.
 ## Example usage
 
 ```
-uses: coingate/status-check-action@main
+uses: coingate/status-check-action@master
 with:
   github_token: '${{ secrets.GITHUB_TOKEN }}'
   state: failure
