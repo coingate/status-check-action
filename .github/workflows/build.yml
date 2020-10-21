@@ -23,6 +23,6 @@ jobs:
           commit_user_name: ${{ github.event.head_commit.author.name }}
           commit_user_email: ${{ github.event.head_commit.author.email }}
           commit_author: ${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>
-          file_pattern: '.github/actions/tests/dist/index.js'
+          file_pattern: '.github/dist/index.js'
           push_options: '--force'
           skip_dirty_check: true
