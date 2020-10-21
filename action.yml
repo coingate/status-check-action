@@ -1,0 +1,24 @@
+name: 'Status Check'
+description: 'Updates status check for pull request'
+inputs:
+  github_token:
+    description: 'GitHub token. (e.g. secrets.GITHUB_TOKEN).'
+    required: true
+  state:
+    description: 'State of status check. (e.g. error, failure, pending, or success).'
+    required: true
+  owner:
+    description: 'Repository owner. Default: current owner.'
+    required: false
+  repo:
+    description: 'Repository name. Default: current repo.'
+    required: false
+  pull_number:
+    description: 'Pull number to create status checks for. Default: current pull number.'
+    required: false
+  check_name:
+    description: 'Name of the check. Default: current job.'
+    required: false 
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

@@ -1,0 +1,28 @@
+name: Build Action
+
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    name: Build action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npx ncc build src/index.js
+      - name: Commit dist
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '[GitHub Workflow] Update action distributable'
+          commit_options: '--no-verify --signoff'
+          commit_user_name: ${{ github.event.head_commit.author.name }}
+          commit_user_email: ${{ github.event.head_commit.author.email }}
+          commit_author: ${{ github.event.head_commit.author.name }} <${{ github.event.head_commit.author.email }}>
+          file_pattern: '.github/actions/tests/dist/index.js'
+          push_options: '--force'
+          skip_dirty_check: true
