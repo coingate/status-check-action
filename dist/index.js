@@ -5753,6 +5753,27 @@ const checkName = core.getInput("check_name") || github.context.job;
 
 const octokit = github.getOctokit(githubToken);
 
+function getPullNumber() {
+  const pullNumber = core.getInput("pull_number");
+
+  if (pullNumber) {
+    return pullNumber;
+  }
+
+  if (!pullNumber) {
+    switch (github.context.eventName) {
+      case "issue_comment":
+        return github.context.payload.issue.number;
+      case "pull_request":
+        return github.context.payload.pull_request.number;
+    }
+  }
+
+  throw new Error(
+    `Failed to prase pull request number with event_name: "${github.context.eventName}"`
+  );
+}
+
 async function getCheckSuiteID() {
   const runID = github.context.runId;
 
@@ -5785,8 +5806,7 @@ async function getLastCheckSuiteRunID(checkSuiteID) {
 }
 
 async function getPullRequestHeadSha() {
-  const pullNumber =
-    core.getInput("pull_number") || github.context.payload.issue.number;
+  const pullNumber = getPullNumber();
 
   core.info(`Getting pull request: #${pullNumber}.`);
 
