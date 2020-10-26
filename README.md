@@ -28,6 +28,10 @@ Pull number to create status checks for. Default: current pull number.
 
 Name of the check. Default: current job.
 
+### `commit_context`
+
+Context to use for setting commit status for. Default: current job.
+
 ## Example usage
 
 ```

@@ -19,6 +19,10 @@ inputs:
   check_name:
     description: 'Name of the check. Default: current job.'
     required: false 
+  commit_context:
+    description: 'Context to use for setting commit status for. Default: current job.'
+    required: false 
+
 runs:
   using: 'node12'
   main: 'dist/index.js'
