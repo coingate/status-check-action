@@ -5750,6 +5750,7 @@ const owner =
   core.getInput("owner") || github.context.payload.repository.owner.login;
 const repo = core.getInput("repo") || github.context.payload.repository.name;
 const checkName = core.getInput("check_name") || github.context.job;
+const commitContext = core.getInput("commit_context") || checkName;
 
 const octokit = github.getOctokit(githubToken);
 
@@ -5830,7 +5831,7 @@ async function createCommitStatus(sha, checkRunID) {
     sha,
     state,
     target_url: `https://github.com/coingate/cicd-test1/runs/${checkRunID}?check_suite_focus=true`,
-    context: checkName,
+    context: commitContext,
   });
 }
 
