@@ -86,7 +86,7 @@ async function createCommitStatus(sha, checkRunID) {
     repo,
     sha,
     state,
-    target_url: `https://github.com/coingate/cicd-test1/runs/${checkRunID}?check_suite_focus=true`,
+    target_url: `https://github.com/${owner}/${repo}/runs/${checkRunID}?check_suite_focus=true`,
     context: commitContext,
   });
 }
